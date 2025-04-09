@@ -1,5 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.21"
+    application
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "es.prog2425.calcprueba"
@@ -9,6 +11,7 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     testImplementation(kotlin("test"))
 }
@@ -16,6 +19,8 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+
 kotlin {
     jvmToolchain(21)
 }

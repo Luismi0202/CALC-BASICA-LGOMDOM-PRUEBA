@@ -2,8 +2,14 @@ package es.iesraprog2425.pruebaes.app
 
 import es.iesraprog2425.pruebaes.model.Operadores
 import es.iesraprog2425.pruebaes.ui.IEntradaSalida
+import java.io.File
 
-class Calculadora(private val ui: IEntradaSalida) {
+
+class Calculadora(private val ui: IEntradaSalida,
+                  private val fecha: String,
+                  private val directorio: File) {
+
+    val fichero = File("$directorio/log$fecha.txt")
 
     private fun pedirNumero(msj: String, msjError: String = "Número no válido!"): Double {
         return ui.pedirDouble(msj) ?: throw InfoCalcException(msjError)
@@ -24,14 +30,21 @@ class Calculadora(private val ui: IEntradaSalida) {
         }
 
     fun iniciar() {
+        var mensaje = ""
+        fichero.createNewFile()
         do {
             try {
+
                 ui.limpiarPantalla()
                 val (numero1, operador, numero2) = pedirInfo()
                 val resultado = realizarCalculo(numero1, operador, numero2)
                 ui.mostrar("Resultado: %.2f".format(resultado))
+                mensaje = "Resultado: %.2f $fecha".format(resultado)
+                fichero.appendText(mensaje + "\n")
             } catch (e: InfoCalcException) {
                 ui.mostrarError(e.message ?: "Se ha producido un error!")
+                mensaje = e.message ?: "Se ha producido un error! $fecha"
+                fichero.appendText(mensaje + "\n")
             }
         } while (ui.preguntar())
         ui.limpiarPantalla()

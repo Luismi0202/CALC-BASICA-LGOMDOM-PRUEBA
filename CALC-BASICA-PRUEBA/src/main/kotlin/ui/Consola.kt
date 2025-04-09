@@ -5,6 +5,8 @@ import java.util.Scanner
 class Consola : IEntradaSalida {
     private val scanner = Scanner(System.`in`)
 
+
+
     override fun mostrar(msj: String, salto: Boolean) {
         print("$msj${if (salto) "\n" else ""}")
     }
