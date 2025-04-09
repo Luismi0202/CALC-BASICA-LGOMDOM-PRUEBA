@@ -3,7 +3,7 @@ package es.iesraprog2425.pruebaes.app
 import es.iesraprog2425.pruebaes.model.Operadores
 import es.iesraprog2425.pruebaes.ui.IEntradaSalida
 import java.io.File
-
+import java.time.LocalDateTime
 
 class Calculadora(private val ui: IEntradaSalida,
                   private val fecha: String,
@@ -39,11 +39,11 @@ class Calculadora(private val ui: IEntradaSalida,
                 val (numero1, operador, numero2) = pedirInfo()
                 val resultado = realizarCalculo(numero1, operador, numero2)
                 ui.mostrar("Resultado: %.2f".format(resultado))
-                mensaje = "Resultado: %.2f $fecha".format(resultado)
+                mensaje = "Resultado: %.2f ${LocalDateTime.now()}".format(resultado)
                 fichero.appendText(mensaje + "\n")
             } catch (e: InfoCalcException) {
                 ui.mostrarError(e.message ?: "Se ha producido un error!")
-                mensaje = e.message ?: "Se ha producido un error! $fecha"
+                mensaje = e.message ?: "Se ha producido un error! ${LocalDateTime.now()}"
                 fichero.appendText(mensaje + "\n")
             }
         } while (ui.preguntar())
