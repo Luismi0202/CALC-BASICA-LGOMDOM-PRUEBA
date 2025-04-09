@@ -66,8 +66,7 @@ class ControlDeArgumentos(val args: Array<String>) {
     }
 
     private fun mostrarLineas(fichero:File){
-        val ficheroStr = fichero.readText()
-        val lineas = ficheroStr.split("\n")
+        val lineas = fichero.readLines()
 
         for(linea in lineas){
             println(linea)
@@ -76,7 +75,6 @@ class ControlDeArgumentos(val args: Array<String>) {
 
     fun sinArgumentos() {
         if (!directorio.exists()) {
-
             val creacion = directorio.mkdir()
 
             if (creacion) {
@@ -90,15 +88,12 @@ class ControlDeArgumentos(val args: Array<String>) {
             if (listado.isEmpty()) {
                 println("No existen ficheros en el log")
             } else {
-                val ultimoModificado = directorio.lastModified()
-
-                for (fichero in listado) {
-                    if (fichero.lastModified() == ultimoModificado) {
-                        val ficheroUltimo = fichero
-                        val fichero = fichero
-                        println("Abriendo fichero $fichero")
-                        mostrarLineas(ficheroUltimo)
-                    }
+                val ficheroUltimo = listado.maxByOrNull { it.lastModified() }
+                if (ficheroUltimo != null) {
+                    println("Abriendo fichero: ${ficheroUltimo.name}")
+                    mostrarLineas(ficheroUltimo)
+                } else {
+                    println("No se encontró ningún fichero válido en el directorio")
                 }
 
             }
