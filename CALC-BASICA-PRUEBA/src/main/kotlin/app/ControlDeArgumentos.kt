@@ -57,7 +57,7 @@ class ControlDeArgumentos(val args: Array<String>) {
 
                     mensaje += fecha
 
-                    val fichero = File("log$fecha.txt")
+                    val fichero = File("$directorio/log$fecha.txt")
                     val creacion = fichero.createNewFile()
 
                     if(creacion){
