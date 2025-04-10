@@ -29,7 +29,9 @@ class ControlDeArgumentos(val args: Array<String>) {
         else{
             when(args.size){
                 1-> {
-                    directorio = File(args[0])
+                    directorio = File(args[0]
+                    )
+                    sinArgumentos()
                 }
 
                 4-> {
@@ -37,6 +39,12 @@ class ControlDeArgumentos(val args: Array<String>) {
 
                     try {
                         directorio = File(args[0])
+
+                        if(!directorio.exists()){
+                            throw Exception("El directorio no existe")
+                            return
+                        }
+
                         val num1 = args[1].toDouble()
                         val operador = Operadores.getOperador(args[2].single()) ?: throw Exception("Operador inválido")
                         val num2 = args[3].toDouble()
@@ -78,7 +86,7 @@ class ControlDeArgumentos(val args: Array<String>) {
             val creacion = directorio.mkdir()
 
             if (creacion) {
-                println("Ruta ./log creada")
+                println("Ruta $directorio creada")
             } else {
                 println("Error al crear ruta log (Desconocido)")
             }
