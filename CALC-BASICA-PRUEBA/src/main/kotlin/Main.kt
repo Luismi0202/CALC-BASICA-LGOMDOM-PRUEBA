@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
 
     println("Pulsa ENTER para continuar")
     readln()
-    Calculadora(Consola(),control.fecha,control.directorio).iniciar()
+    Calculadora(Consola(),control.fecha,control.directorio).iniciar() //podria meter el control y luego coger fecha y directorio
 }
 
 

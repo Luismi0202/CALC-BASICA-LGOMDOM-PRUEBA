@@ -28,9 +28,9 @@ class ControlDeArgumentos(val args: Array<String>) {
 
         else{
             when(args.size){
+
                 1-> {
-                    directorio = File(args[0]
-                    )
+                    directorio = File(args[0])
                     sinArgumentos()
                 }
 
