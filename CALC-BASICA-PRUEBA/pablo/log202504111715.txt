@@ -1,0 +1,5 @@
+2.0 MULTIPLICACION 1.0 = 2.0 202504111715
+Resultado: 14,00 2025-04-11T17:16:04.099329900
+El primer número no es válido!
+El operador no es válido!
+Resultado: 12,00 2025-04-11T17:16:12.267683

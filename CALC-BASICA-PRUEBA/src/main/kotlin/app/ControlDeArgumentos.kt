@@ -41,8 +41,16 @@ class ControlDeArgumentos(val args: Array<String>) {
                         directorio = File(args[0])
 
                         if(!directorio.exists()){
-                            throw Exception("El directorio no existe")
-                            return
+                            println("Creando directorio $directorio...")
+                            val creado = directorio.mkdir()
+
+                            if(!creado){
+                                println("Error al crear directorio...")
+                                return
+                            }
+                            else{
+                                println("¡Directorio creado con éxito!")
+                            }
                         }
 
                         val num1 = args[1].toDouble()
